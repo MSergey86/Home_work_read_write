@@ -40,35 +40,17 @@ print()
 
 def get_shop_list_by_dishes(dishes, person_count):
     order_dishes = {}
+
     for dish in dishes:
-        if dish.upper() == "ЗАПЕЧЕННЫЙ КАРТОФЕЛЬ":
-                for item_dict in cook_book["Запеченный картофель"]:
-                    if item_dict['ingredient_name'] in order_dishes:
-                        q = int(item_dict["quantity"]) * person_count + order_dishes[item_dict['ingredient_name']]["quantity"]
+        for key in cook_book.keys():
+            if key.upper() == dish.upper():
+                for item in cook_book[key]:
+                    if item['ingredient_name'] in order_dishes:
+                        q = int(item["quantity"]) * person_count + order_dishes[item['ingredient_name']]["quantity"]
                     else:
-                        q = int(item_dict["quantity"]) * person_count
-                    order_dishes[item_dict['ingredient_name']] = {"quantity": q, "measure": item_dict["measure"]}
-        elif dish.upper() == "ОМЛЕТ":
-                for item_dict in cook_book["Омлет"]:
-                    if item_dict['ingredient_name'] in order_dishes:
-                        q = int(item_dict["quantity"]) * person_count + order_dishes[item_dict['ingredient_name']]["quantity"]
-                    else:
-                        q = int(item_dict["quantity"]) * person_count
-                    order_dishes[item_dict['ingredient_name']] = {"quantity": q, "measure": item_dict["measure"]}
-        elif dish.upper() == "УТКА ПО-ПЕКИНСКИ":
-                for item_dict in cook_book["Утка по-пекински"]:
-                    if item_dict['ingredient_name'] in order_dishes:
-                        q = int(item_dict["quantity"]) * person_count + order_dishes[item_dict['ingredient_name']]["quantity"]
-                    else:
-                        q = int(item_dict["quantity"]) * person_count
-                    order_dishes[item_dict['ingredient_name']] = {"quantity": q, "measure": item_dict["measure"]}
-        elif dish.upper() == "ФАХИТОС":
-                for item_dict in cook_book["Фахитос"]:
-                    if item_dict['ingredient_name'] in order_dishes:
-                        q = int(item_dict["quantity"]) * person_count + order_dishes[item_dict['ingredient_name']]["quantity"]
-                    else:
-                        q = int(item_dict["quantity"]) * person_count
-                    order_dishes[item_dict['ingredient_name']] = {"quantity": q, "measure": item_dict["measure"]}
+                        q = int(item["quantity"]) * person_count
+                    order_dishes[item['ingredient_name']] = {"quantity": q, "measure": item["measure"]}
+
     pprint(order_dishes)
 
 
